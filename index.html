@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+	</head>
+	<body ng-controller="myctr">
+		<div class="panel-group container " id="accordion" role="tablist" aria-multiselectable="true" >
+				<div class="panel" ng-repeat = " pro in city">
+				<div class="panel-heading" role="tab" id="headingOne">
+					<h4 class="panel-title">
+				        <a data-toggle="collapse" data-parent="#accordion" href="#collapse{{$index}}" aria-expanded="true" aria-controls="collapseOne">
+				          {{pro.name}}<span class="badge">{{$index+1}}
+				        </a>
+      				</h4>
+				</div>
+				<div id="collapse{{$index}}" class="panel-collapse collapse {{$index==0?'in':''}}" role="tabpanel" aria-labelledby="headingOne">
+					<div class="panel-body">
+						<ul class="list-group">
+						  <li class="list-group-item" ng-repeat="pro1 in pro.cites">{{pro1.name}}<span class="badge">{{$index+1}}</span></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/jquery-1.11.3.js" ></script>
+	<script type="text/javascript" src="js/bootstrap.js" ></script>
+	<script type="text/javascript" src="js/angular.min.js" ></script>
+	<script>
+		
+		var app=angular.module("myapp",[]);
+		app.controller("myctr",function($scope){
+		var	city=[
+			{
+				"name":"浙江",
+				"cites":[
+					{"name":"金华"},
+					{"name":"温州"},
+					{"name":"嘉兴"}
+				]
+			},
+			{
+				"name":"江苏",
+				"cites":[
+					{"name":"连云港"},
+					{"name":"苏州"},
+					{"name":"徐州"}
+				]
+			},
+			{
+				"name":"河南",
+				"cites":[
+					{"name":"郑州"},
+					{"name":"洛阳"},
+					{"name":"开封"}
+				]
+			}
+			]
+		$scope.city=city;
+		})		
+	</script>
+</html>
